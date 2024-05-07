@@ -78,7 +78,8 @@ public class PersonaAdapter implements PersonaServiceOut {
         }else {
             PersonaDTO personaDTO = PersonaMapper.fromEntity(personaRepository.findById(id).get());
             String dataParaRedis = Util.convertirAString(personaDTO);
-            redisService.saveInRedis(Constants.REDIS_KEY_OBTENERPERSONA+id,dataParaRedis,2);
+            //minutos 10
+            redisService.saveInRedis(Constants.REDIS_KEY_OBTENERPERSONA+id,dataParaRedis,10);
             return Optional.of(personaDTO);
         }
     }
